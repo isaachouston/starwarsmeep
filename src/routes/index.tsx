@@ -10,7 +10,7 @@ const Routes: React.FC = () => (
   <Router.Navigator
     screenOptions={{
       headerShown: false,
-      cardStyle: { backgroundColor: '#312e38' },
+      cardStyle: { backgroundColor: '#0e0e0e' },
     }}
   >
     <Router.Screen name="Splash" component={Splash} />
