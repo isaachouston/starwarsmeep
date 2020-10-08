@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
+
+import { useNavigation } from '@react-navigation/native';
 
 import {
   Container,
@@ -21,40 +23,46 @@ export interface Films {
   created: string;
   title: string;
   opening_crawl: string;
-  episode_id: number;
+  episode_id: string;
   release_date: Date;
 }
 
 const Films: React.FC = () => {
   const [films, setFilms] = useState<Films[]>([]);
+  const { navigate } = useNavigation();
 
   useEffect(() => {
     async function loadFilms(): Promise<void> {
       const response = await api.get('/films');
 
       const filmsList = response.data.results;
-      console.log(filmsList);
 
       setFilms(filmsList);
-      console.log(setFilms);
     }
 
     loadFilms();
   }, []);
+
+  const navigateMovieInfo = useCallback(
+    (filmId: string) => {
+      navigate('MovieInfo', { filmId });
+    },
+    [navigate],
+  );
 
   return (
     <Container>
       <Header>
         <HeaderTitle>
           Bem vindo Padawan, {'\n'}
-          <UserName>Isaac</UserName>
+          <UserName>Meep</UserName>
         </HeaderTitle>
       </Header>
       <FilmsList
         data={films}
-        keyExtractor={(film) => film.created}
+        keyExtractor={(film) => Number(film.episode_id)}
         renderItem={({ item }) => (
-          <FilmsContainer onPress={() => {}}>
+          <FilmsContainer onPress={() => navigateMovieInfo(item.created)}>
             <FilmTitle>{item.title}</FilmTitle>
             <FilmSynopsis>{item.opening_crawl}</FilmSynopsis>
             <FilmEp>{item.episode_id}</FilmEp>

@@ -1,5 +1,7 @@
 import styled from 'styled-components/native';
+
 import { FlatList } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
 import { Films } from './index';
 
 export const Container = styled.View`
@@ -7,6 +9,7 @@ export const Container = styled.View`
 `;
 export const Header = styled.View`
   padding: 24px;
+
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -16,7 +19,6 @@ export const HeaderTitle = styled.Text`
   color: #f4ede8;
   font-size: 20px;
   font-family: 'RobotoSlab-Regular';
-  line-height: 28px;
 `;
 export const UserName = styled.Text`
   color: #ffe81f;
@@ -24,7 +26,7 @@ export const UserName = styled.Text`
 `;
 export const FilmsList = styled(FlatList as new () => FlatList<Films>)``;
 
-export const FilmsContainer = styled.View`
+export const FilmsContainer = styled(RectButton)`
   flex: 1;
   background: #222222;
   padding: 16px 16px;

@@ -9,10 +9,6 @@ import { Container, Title } from './styles';
 
 import swlogo from '../../assets/swlogo.png';
 
-interface SignInFormData {
-  name: string;
-}
-
 const SignIn: React.FC = () => {
   const navigation = useNavigation();
 
