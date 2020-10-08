@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextInputProps } from 'react-native';
-import iconr2d2 from '../../../assets/iconr2d2.png';
+
+import iconr2d2 from '../../assets/iconr2d2.png';
 
 import { Container, TextInput, Image } from './styles';
 

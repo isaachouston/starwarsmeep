@@ -2,14 +2,18 @@ import React from 'react';
 import { Image, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import Input from '../components/Input';
-import Button from '../components/Button';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
 
 import { Container, Title } from './styles';
 
 import swlogo from '../../assets/swlogo.png';
 
-const Splash: React.FC = () => {
+interface SignInFormData {
+  name: string;
+}
+
+const SignIn: React.FC = () => {
   const navigation = useNavigation();
 
   return (
@@ -30,4 +34,4 @@ const Splash: React.FC = () => {
   );
 };
 
-export default Splash;
+export default SignIn;
