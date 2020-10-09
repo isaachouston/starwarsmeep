@@ -36,11 +36,8 @@ export const FilmTitle = styled.Text`
   color: #ffe81f;
   font-size: 17px;
   margin: 5px 0;
-<<<<<<< HEAD
   text-transform: uppercase;
   font-family: 'RobotoSlab-Regular';
-=======
->>>>>>> main
 `;
 export const FilmSynopsis = styled.Text`
   color: #fff;
