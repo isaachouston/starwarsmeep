@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
-import { Films } from './index';
+import { MovieInfo } from './index';
 
 export const Container = styled.View`
   flex: 1;
@@ -22,15 +22,11 @@ export const HeaderTitle = styled.Text`
 
 export const BackButton = styled(RectButton)``;
 
-export const UserName = styled.Text`
-  color: #ffe81f;
-  font-family: 'RobotoSlab-Medium';
-`;
-export const FilmsList = styled(FlatList as new () => FlatList<Films>)``;
+export const FilmsList = styled(FlatList as new () => FlatList<MovieInfo>)``;
 
 export const FilmsContainer = styled(RectButton)`
   flex: 1;
-  background: #222222;
+  background: #fff;
   padding: 16px 16px;
   border-radius: 5px;
   margin: 8px;

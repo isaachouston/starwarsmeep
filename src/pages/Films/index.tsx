@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import React, { useEffect, useState, useCallback } from 'react';
 
 import { useNavigation } from '@react-navigation/native';
@@ -18,7 +19,8 @@ import {
 
 import api from '../../services/api';
 
-export interface Films {
+export interface DataFilm {
+  id: string;
   director: string;
   created: string;
   title: string;
@@ -28,19 +30,35 @@ export interface Films {
 }
 
 const Films: React.FC = () => {
-  const [films, setFilms] = useState<Films[]>([]);
+  const [filmList, setFilmList] = useState<DataFilm[]>([]);
   const { navigate } = useNavigation();
 
-  useEffect(() => {
-    async function loadFilms(): Promise<void> {
-      const response = await api.get('/films');
+  async function GetFilms(): Promise<void> {
+    const results = await api.get('/films').then((response) => {
+      return response.data.results;
+    });
 
-      const filmsList = response.data.results;
+    const arrayData = [];
 
-      setFilms(filmsList);
+    for (let i = 0; i < results.length; i++) {
+      const id = i + 1;
+      const data = {
+        id: id.toString(),
+        director: results[i].director,
+        created: results[i].created,
+        title: results[i].title,
+        opening_crawl: results[i].opening_crawl,
+        episode_id: results[i].episode_id,
+        release_date: results[i].release_date,
+      };
+      arrayData.push(data);
     }
 
-    loadFilms();
+    setFilmList(arrayData);
+  }
+
+  useEffect(() => {
+    GetFilms();
   }, []);
 
   const navigateMovieInfo = useCallback(
@@ -59,10 +77,10 @@ const Films: React.FC = () => {
         </HeaderTitle>
       </Header>
       <FilmsList
-        data={films}
-        keyExtractor={(film) => Number(film.episode_id)}
+        keyExtractor={(filmListItem) => filmListItem.id}
+        data={filmList}
         renderItem={({ item }) => (
-          <FilmsContainer onPress={() => navigateMovieInfo(item.created)}>
+          <FilmsContainer onPress={() => navigateMovieInfo(item.id)}>
             <FilmTitle>{item.title}</FilmTitle>
             <FilmSynopsis>{item.opening_crawl}</FilmSynopsis>
             <FilmEp>{item.episode_id}</FilmEp>

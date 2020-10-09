@@ -26,14 +26,19 @@ export interface MovieInfo {
   opening_crawl: string;
   episode_id: number;
   release_date: Date;
+  producer: string;
+  characters: [];
+  planets: [];
+  vehicles: [];
+  species: [];
 }
 
 const MovieInfo: React.FC = () => {
+  const [movieInfo, setMovieInfo] = useState<MovieInfo[]>([]);
   const route = useRoute();
   const { filmId } = route.params;
-  const { goBack } = useNavigation();
 
-  const [movieInfo, setMovieInfo] = useState<MovieInfo[]>([]);
+  const { goBack } = useNavigation();
 
   const navigateBack = useCallback(() => {
     goBack();
@@ -41,10 +46,11 @@ const MovieInfo: React.FC = () => {
 
   useEffect(() => {
     async function loadFilms(): Promise<void> {
-      const response = await api.get(`/films${route}`);
-      console.log(response);
+      const response = await api.get(`/films/${filmId}`);
+      console.log('-------------------------------------------------');
 
-      const movieInfoList = response.data.results;
+      const movieInfoList = response.data;
+      console.log(movieInfoList);
 
       setMovieInfo(movieInfoList);
     }
@@ -63,14 +69,11 @@ const MovieInfo: React.FC = () => {
 
       <FilmsList
         data={movieInfo}
-        keyExtractor={(film) => film.created}
+        keyExtractor={(film) => film.title}
         renderItem={({ item }) => (
           <FilmsContainer onPress={() => {}}>
-            <FilmTitle>{item.title}</FilmTitle>
+            <FilmTitle>{item.director}</FilmTitle>
             <FilmSynopsis>{item.opening_crawl}</FilmSynopsis>
-            <FilmEp>{item.episode_id}</FilmEp>
-            <FilmDate>{item.release_date}</FilmDate>
-            <FilmDirector>{item.director}</FilmDirector>
           </FilmsContainer>
         )}
       />

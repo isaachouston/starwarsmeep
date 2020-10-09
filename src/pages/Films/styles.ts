@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 import { FlatList } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
-import { Films } from './index';
+import { Films, DataFilm } from './index';
 
 export const Container = styled.View`
   flex: 1;
@@ -24,7 +24,7 @@ export const UserName = styled.Text`
   color: #ffe81f;
   font-family: 'RobotoSlab-Medium';
 `;
-export const FilmsList = styled(FlatList as new () => FlatList<Films>)``;
+export const FilmsList = styled(FlatList as new () => FlatList<DataFilm>)``;
 
 export const FilmsContainer = styled(RectButton)`
   flex: 1;
