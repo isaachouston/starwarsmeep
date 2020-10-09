@@ -37,6 +37,8 @@ export const FilmTitle = styled.Text`
   color: #ffe81f;
   font-size: 17px;
   margin: 5px 0;
+  text-transform: uppercase;
+  font-family: 'RobotoSlab-Regular';
 `;
 export const FilmSynopsis = styled.Text`
   color: #fff;
@@ -44,10 +46,9 @@ export const FilmSynopsis = styled.Text`
 `;
 export const FilmDate = styled.Text`
   color: #fff;
-
   align-items: center;
   padding-top: 10px;
-  margin-top: auto;
+  margin: 5px 0;
 `;
 export const FilmEp = styled.Text`
   color: #fff;

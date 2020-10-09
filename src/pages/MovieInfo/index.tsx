@@ -88,7 +88,7 @@ const MovieInfo: React.FC = () => {
           <Icon name="calendar" size={20} color="#999999" />
           <Text> {movieInfo.release_date} </Text>
         </FilmDate>
-        <FilmDirector>Diretor:{movieInfo.director}</FilmDirector>
+        <FilmDirector>Diretor: {movieInfo.director}</FilmDirector>
         <FilmProducer>Produtor: {movieInfo.producer}</FilmProducer>
 
         <PlanetsFilm>

@@ -1,5 +1,7 @@
 /* eslint-disable no-plusplus */
 import React, { useEffect, useState, useCallback } from 'react';
+import Icon from 'react-native-vector-icons/Feather';
+import { Text } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -7,7 +9,6 @@ import {
   Container,
   Header,
   HeaderTitle,
-  UserName,
   FilmsList,
   FilmsContainer,
   FilmTitle,
@@ -71,21 +72,24 @@ const Films: React.FC = () => {
   return (
     <Container>
       <Header>
-        <HeaderTitle>
-          Bem vindo Padawan, {'\n'}
-          <UserName>Meep</UserName>
-        </HeaderTitle>
+        <HeaderTitle>Bem vindo Padawan</HeaderTitle>
       </Header>
       <FilmsList
         keyExtractor={(filmListItem) => filmListItem.id}
         data={filmList}
         renderItem={({ item }) => (
           <FilmsContainer onPress={() => navigateMovieInfo(item.id)}>
-            <FilmTitle>{item.title}</FilmTitle>
+            <FilmTitle>
+              <Icon name="film" size={24} color="#999999" />
+              <Text> {item.title} </Text>
+            </FilmTitle>
             <FilmSynopsis>{item.opening_crawl}</FilmSynopsis>
-            <FilmEp>{item.episode_id}</FilmEp>
-            <FilmDate>{item.release_date}</FilmDate>
-            <FilmDirector>{item.director}</FilmDirector>
+            <FilmEp>Episodio: {item.episode_id}</FilmEp>
+            <FilmDate>
+              <Icon name="calendar" size={20} color="#999999" />
+              <Text> {item.release_date} </Text>
+            </FilmDate>
+            <FilmDirector>Diretor: {item.director}</FilmDirector>
           </FilmsContainer>
         )}
       />
