@@ -19,6 +19,7 @@ import {
 } from './styles';
 
 import api from '../../services/api';
+import { InputProps } from '../../components/Input';
 
 export interface DataFilm {
   id: string;
@@ -30,7 +31,7 @@ export interface DataFilm {
   release_date: Date;
 }
 
-const Films: React.FC = () => {
+const Films: React.FC<InputProps> = ( {name}) => {
   const [filmList, setFilmList] = useState<DataFilm[]>([]);
   const { navigate } = useNavigation();
 
@@ -72,7 +73,10 @@ const Films: React.FC = () => {
   return (
     <Container>
       <Header>
-        <HeaderTitle>Bem vindo Padawan</HeaderTitle>
+        <HeaderTitle>Bem vindo {name}</HeaderTitle>
+        {
+          console.log(name)
+        }
       </Header>
       <FilmsList
         keyExtractor={(filmListItem) => filmListItem.id}
