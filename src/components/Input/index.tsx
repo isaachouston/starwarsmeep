@@ -12,6 +12,7 @@ export interface InputProps extends TextInputProps {
 const Input: React.FC<InputProps> = ({ name, ...rest }) => {
   return (
     <Container>
+      
       <Image
         source={iconr2d2}
         width={30}

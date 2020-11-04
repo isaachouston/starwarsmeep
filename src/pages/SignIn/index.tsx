@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -10,14 +10,27 @@ import { Container, Title } from './styles';
 import swlogo from '../../assets/swlogo.png';
 
 const SignIn: React.FC = () => {
+
+
+const [inputName, setInputName] = useState("");
+
   const navigation = useNavigation();
 
-   const handleChange = (name: InputProps) => {
-    const nome =  name.value;
-    console.log(nome);
+   const handleChange = (e: any) => {
     
+   const title = e.nativeEvent.text;
+   setInputName(title)  
+   console.log(title);
+   
 
   }
+
+
+  const handleSubmit = () => {
+    console.log(inputName);  
+      navigation.navigate( 'Films', {name: inputName} )
+
+  } 
 
   return (
     <>
@@ -29,8 +42,8 @@ const SignIn: React.FC = () => {
           <Image source={swlogo} style={{ width: 300, height: 200 }} />
           <Title>Que a força esteja com você</Title>
 
-          <Input name="text" onChange={ (name)=>{handleChange}} placeholder="Digite seu nome Jedi"/>
-          <Button onPress={() => navigation.navigate('Films')}>Entrar</Button>
+          <Input name="text" onChange={handleChange} placeholder="Digite seu nome Jedi"/>
+          <Button onPress={handleSubmit}>Entrar</Button>
         </Container>
       </ScrollView>
     </>
