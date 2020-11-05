@@ -28,7 +28,7 @@ const [inputName, setInputName] = useState("");
 
   const handleSubmit = () => {
     console.log(inputName);  
-      navigation.navigate( 'Films', {name: inputName} )
+      navigation.navigate( 'Films', {name: inputName})
 
   } 
 
