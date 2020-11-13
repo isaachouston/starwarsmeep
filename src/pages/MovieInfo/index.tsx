@@ -128,7 +128,7 @@ const MovieInfo: React.FC = () => {
         </StarshipsFilm>
 
         <VehiclesFilm>
-          <HeaderTitle>Naves Estelares: {'\n'}</HeaderTitle>
+          <HeaderTitle>Veículos: {'\n'}</HeaderTitle>
           <FilmsList
             keyExtractor={(filmListItem) => filmListItem.id}
             data={movieInfo.vehicles}

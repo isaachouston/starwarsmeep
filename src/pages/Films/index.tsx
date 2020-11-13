@@ -1,9 +1,19 @@
 /* eslint-disable no-plusplus */
 import React, { useEffect, useState, useCallback } from 'react';
+import {bannerFilms} from '../bannerFilmes';
 import Icon from 'react-native-vector-icons/Feather';
-import { Text } from 'react-native';
+import { Image, Text } from 'react-native';
 
-import { useNavigation } from '@react-navigation/native';
+import banner_1 from '../../assets/1filme.jpg'
+import banner_2 from '../../assets/2filme.jpg'
+
+import {
+  NavigationAction,
+  NavigationProp,
+  RouteProp,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 
 import {
   Container,
@@ -12,10 +22,9 @@ import {
   FilmsList,
   FilmsContainer,
   FilmTitle,
-  FilmDirector,
-  FilmSynopsis,
+  FilmDirector,  
   FilmEp,
-  FilmDate,
+  FilmDate,  
 } from './styles';
 
 import api from '../../services/api';
@@ -27,23 +36,21 @@ export interface DataFilm {
   title: string;
   opening_crawl: string;
   episode_id: string;
-  release_date: Date;
+  release_date: Date;  
 }
 
-interface InputProps {
-  name: string;
-}
+const Films: React.FC = () => {
+  const [nameTitle, setNameTitle] = useState('...');
 
-const Films: React.FC<InputProps> = ( {name}) => {
-
-  const [nameTitle, setNameTitle] = useState("...");
-
+  const { params } = useRoute();
 
   useEffect(() => {
-    console.log(name);
-    
-    setNameTitle(name)    
-  }, [name])
+    if (params) {
+      const parametro = params as { inputName?: string };
+      setNameTitle(parametro.inputName ?? '');
+    }
+  }, []);
+ 
 
   const [filmList, setFilmList] = useState<DataFilm[]>([]);
   const { navigate } = useNavigation();
@@ -86,7 +93,7 @@ const Films: React.FC<InputProps> = ( {name}) => {
   return (
     <Container>
       <Header>
-        <HeaderTitle>Bem vindo {nameTitle}</HeaderTitle>      
+        <HeaderTitle>Bem vindo {nameTitle}</HeaderTitle>
       </Header>
       <FilmsList
         keyExtractor={(filmListItem) => filmListItem.id}
@@ -97,7 +104,7 @@ const Films: React.FC<InputProps> = ( {name}) => {
               <Icon name="film" size={24} color="#999999" />
               <Text> {item.title} </Text>
             </FilmTitle>
-            <FilmSynopsis>{item.opening_crawl}</FilmSynopsis>
+            <Image source={bannerFilms[parseInt(item.episode_id)-1]} style={{ width: "100%", height: 600, borderRadius: 5 }} />
             <FilmEp>Episodio: {item.episode_id}</FilmEp>
             <FilmDate>
               <Icon name="calendar" size={20} color="#999999" />
