@@ -1,27 +1,21 @@
 ### :clipboard: Funcionalidades do projeto:
 
-Um aplicativo que lista livros usando a API https://developers.google.com/books/docs/v1/using.
-
-### :straight_ruler: Arquitetura:
-
-![estrutura](https://user-images.githubusercontent.com/43249054/113227491-339bc500-9269-11eb-8c3e-0ee655d1a831.PNG)
+Um aplicativo que lista filmes do Star Wars usando a API https://swapi.dev/api/.
 
 
 ### :bulb: Funcionalidades:
 
-Esse simples aplicativo, permiti que seja possível listar livros diversos, adicionar aos favoritos e exibir detalhes do livro.
+Esse simples aplicativo, permiti que seja possível listar filmes e exibir detalhes do mesmo.
 
 
 ### ⚙️ Tecnologias utilizadas:
 
-    - ReactJs
+    - React Native
     - Styled Component
-    - Material Ui
     - Typescript
     - EsLint
     - Prettier
-    - React-router
-    - Context 
+    - React-navegation    
     - Axios
     - Yarn
     
@@ -30,7 +24,7 @@ Esse simples aplicativo, permiti que seja possível listar livros diversos, adic
 Primeiro clone o arquivo do git:
 
 ```
-$ git clone https://github.com/isaachouston/bookshelf-digital
+$ git clone https://github.com/isaachouston/starwarsmeep.git
 ```
 
 Instale os módulos, executando:
@@ -42,7 +36,7 @@ yarn
 Inicialize o emulador, e excute na pasta do projeto:
 
 ```
-yarn start
+yarn android
 ```
 
 
